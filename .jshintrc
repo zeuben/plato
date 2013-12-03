@@ -8,8 +8,14 @@
   "noarg": true,
   "sub": true,
   "undef": true,
-  "unused": true,
+  "unused": "variables",
   "boss": true,
   "eqnull": true,
-  "node": true
+  "node": true,
+  "globals" : {
+    "angular" : false,
+    "requirejs" : false,
+    "require" : false,
+    "define" : false
+  }
 }

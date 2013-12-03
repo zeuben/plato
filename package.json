@@ -1,7 +1,7 @@
 {
   "name": "plato",
   "description": "JavaScript source analysis and visualizer",
-  "version": "0.6.2",
+  "version": "2.0.0-wip",
   "homepage": "https://github.com/es-analysis/plato",
   "author": {
     "name": "Jarrod Overson",
@@ -31,10 +31,12 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.5.4",
-    "grunt-contrib-nodeunit": "~0.1.2",
-    "grunt-contrib-uglify": "~0.2.0",
-    "grunt-casper": "~0.1.1"
+    "load-grunt-config": "~0.7.0",
+    "load-grunt-tasks": "~0.2.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt-contrib-nodeunit": "~0.2.2",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-sass": "~0.5.1"
   },
   "keywords": [
     "halstead",
@@ -46,10 +48,12 @@
     "analyze"
   ],
   "dependencies": {
-    "complexity-report": "~0.10.3",
     "posix-getopt": "~1.0.0",
     "lodash": "~1.0.1",
-    "fs-extra": "~0.3.2",
-    "jshint": "~2.1.2"
+    "q": "~0.9.7",
+    "q-io": "~1.10.6",
+    "nedb": "~0.9.1",
+    "eventemitter2": "~0.4.13",
+    "glob": "~3.2.7"
   }
 }
