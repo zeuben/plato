@@ -13,6 +13,7 @@
   "eqnull": true,
   "node": true,
   "globals" : {
+    "document" : false,
     "angular" : false,
     "requirejs" : false,
     "require" : false,
