@@ -84,7 +84,8 @@ exports['plato'] = {
       ],
       files : [
         'test/fixtures/a.js'
-      ]
+      ],
+      output : 'tmp'
     };
 
     var promise = plato.runReports(config);
@@ -97,7 +98,8 @@ exports['plato'] = {
       function(){
         test.equal(num, expected, expected + ' events should have been generated');
         test.done();
-      },function(){
+      },function(err){
+        console.log(err.stack);
         test.ok(false);
         test.done();
       }
@@ -111,8 +113,8 @@ function positiveTest(promise,test) {
       test.ok(true);
       test.done();
     },
-    function(){
-      console.log(arguments);
+    function(err){
+      console.log(err.stack);
       test.ok(false);
       test.done();
     }
