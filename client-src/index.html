@@ -9,6 +9,8 @@
 
   <link rel="stylesheet" href="assets/css/foundation.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <link rel="stylesheet" href="assets/css/plato-charts.css" />
+  <script src="js/vendor/d3/d3.js"></script>
   <script src="js/vendor/angular/angular.js"></script>
   <script src="js/vendor/requirejs/require.js" data-main="js/main"></script>
 </head>
@@ -38,17 +40,10 @@
 
 <main ng-controller="appCtrl">
 
-  <div class="row">
-    <div class="large-12 columns">
-        <h1 ng-bind="config.title"></h1>
+  <div ng-repeat="row in config.layout.overview">
+    <div ng-repeat="item in row track by $index">
+      <div plato-element ng-class="classForLength(row.length)" element="item" config="config" reports="reports"></div>
       </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="large-6 columns">
-    </div>
-    <div class="large-6  columns">
     </div>
   </div>
 
