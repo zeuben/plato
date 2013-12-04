@@ -12,7 +12,10 @@
   "boss": true,
   "eqnull": true,
   "node": true,
+  "debug": true,
   "globals" : {
+    "window" : false,
+    "d3" : false,
     "document" : false,
     "angular" : false,
     "requirejs" : false,
