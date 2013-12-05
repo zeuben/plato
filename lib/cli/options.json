@@ -5,6 +5,11 @@
     "type": "Boolean",
     "modal": true
   },
+  "c": {
+    "long": "config",
+    "desc": "Configuration (.platorc) file location",
+    "type": "String"
+  },
   "q": {
     "long": "quiet",
     "desc": "Reduce output to errors only",
@@ -21,8 +26,8 @@
     "desc": "File exclusion regex",
     "type": "String"
   },
-  "d": {
-    "long": "dir",
+  "o": {
+    "long": "output",
     "desc": "The output directory",
     "type": "String",
     "required": true
@@ -31,11 +36,6 @@
     "long": "recurse",
     "desc": "Recursively search directories",
     "type": "Boolean"
-  },
-  "l": {
-    "long": "jshint",
-    "desc": "Specify a jshintrc file for JSHint linting",
-    "type": "String"
   },
   "t": {
     "long": "title",
