@@ -36,31 +36,22 @@ module.exports = function(grunt) {
 //    );
 //  });
 //
-//  grunt.registerTask('runbin',function(){
-//    var done = this.async();
-//
-//    grunt.util.spawn({
-//        cmd : './bin/plato',
-//        args : [
-//          '-q',
-//          '-r',
-//          '-l.jshintrc',
-//          '-xvendor|bundles',
-//          '-dreports',
-//          '-tPlato report',
-//          'lib/'
-//        ]
-//      },
-//      function(err, result, code){
-//        console.log(result.stdout);
-//        if (err || code !== 0) {
-//          console.log(err);
-//          grunt.fatal('Running plato binary failed');
-//        }
-//        done();
-//      }
-//    );
-//  });
+  grunt.registerTask('runbin',function(){
+    var done = this.async();
+
+    grunt.util.spawn({
+        cmd : './bin/plato'
+      },
+      function(err, result, code){
+        console.log(result.stdout);
+        if (err || code !== 0) {
+          console.log(err);
+          grunt.fatal('Running plato binary failed');
+        }
+        done();
+      }
+    );
+  });
 
   grunt.registerTask('dev', [
     'test',
@@ -70,7 +61,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('test', [
     'jshint',
-    'nodeunit'
+    'nodeunit',
+    'runbin'
   ]);
 
   grunt.registerTask('build', [
