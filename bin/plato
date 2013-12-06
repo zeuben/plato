@@ -16,6 +16,8 @@ if (cli.args.h) {
   process.exit();
 }
 
-cli.exec(function(){
+cli.exec(function(results){
+  console.log('Reports for ' + results.files.length + ' files written to directory "' + results.output + '"');
+
   console.log('Done!');
 });

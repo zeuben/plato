@@ -1,4 +1,5 @@
 {
+  "files" : "test/fixtures/*.js",
   "title" : "Plato Report Title",
   "plato-jshint" : {
     "jshintrc" : ".jshintrc"
