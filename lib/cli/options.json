@@ -29,8 +29,7 @@
   "o": {
     "long": "output",
     "desc": "The output directory",
-    "type": "String",
-    "required": true
+    "type": "String"
   },
   "t": {
     "long": "title",
