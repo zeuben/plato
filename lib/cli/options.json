@@ -32,11 +32,6 @@
     "type": "String",
     "required": true
   },
-  "r": {
-    "long": "recurse",
-    "desc": "Recursively search directories",
-    "type": "Boolean"
-  },
   "t": {
     "long": "title",
     "desc": "Title of the report",
