@@ -54,10 +54,11 @@ exports['util'] = {
     test.done();
   },
   'strip comments': function(test) {
-    test.expect(1);
+    test.expect(2);
 
     var source = fs.readFileSync('test/fixtures/.jshintrc').toString();
     test.doesNotThrow(function(){JSON.parse(util.stripComments(source));}, "Comments should be stripped and JSON parsable");
+    test.equal(util.stripComments('foo/**/*bar'), 'foo/**/*bar');
 
     test.done();
   },
