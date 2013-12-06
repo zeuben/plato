@@ -1,6 +1,11 @@
 {
-  "files" : "test/fixtures/*.js",
   "title" : "Plato Report Title",
+  "output" : "reports",
+  "files" : "test/fixtures/**/*.js",
+  "modules" : [
+    "plato-complexity-report",
+    "plato-jshint"
+  ],
   "plato-jshint" : {
     "jshintrc" : ".jshintrc"
   },
@@ -18,6 +23,15 @@
       ],
       [
         "<h3>Maintainability</h3><plato-barchart source=\"reports['plato-complexity-report'].summary\" property=maintainability></plato-barchart>"
+      ],
+      [
+        "<h3>Lines of Code</h3><plato-barchart source=\"reports['plato-complexity-report'].summary\" property=sloc.physical></plato-barchart>"
+      ],
+      [
+        "<h3>Estimated Errors In Implementation</h3><plato-barchart source=\"reports['plato-complexity-report'].summary\" property=halstead.bugs></plato-barchart>"
+      ],
+      [
+        "<h3>Lint Errors</h3><plato-barchart source=\"reports['plato-jshint'].summary\" property=messages></plato-barchart>"
       ]
     ]
   }
