@@ -65,21 +65,6 @@ exports['plato'] = {
     positiveTest(promise,test);
 
   },
-  'test init Directory' : function(test) {
-    test.expect(2);
-
-    var dir = 'tmp2';
-
-    var promise = plato.initDirectory({output : dir});
-
-    promise.then(
-      function(){
-        var stat = fs.statSync(dir);
-        test.ok(stat.isDirectory(dir));
-        positiveTest(promise,test);
-      }
-    );
-  },
   'test multiple runners and init directory' : function(test){
     test.expect(2);
 
