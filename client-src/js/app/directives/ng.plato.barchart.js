@@ -26,7 +26,7 @@ define(
           var data = Object.keys(scope.source).map(function(key){
             var report = scope.source[key];
             return {
-              label : report.filename,
+              label : key,
               value : util.dotref(report, scope.property)
             };
           });
