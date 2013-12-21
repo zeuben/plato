@@ -1,6 +1,6 @@
 'use strict';
 
-var fs = require('fs');
+var fs = require('fs'), path = require('path');
 
 var plato = require('../lib/plato');
 
@@ -36,7 +36,9 @@ exports['plato'] = {
   'test report runner' : function(test) {
     test.expect(1);
 
+    console.log('foo');
     var promise = plato.runSetup('plato-complexity-report').then(function(){
+      console.log('bar');
       return plato.runReport('plato-complexity-report', {
         file : 'file.js',
         source : 'var a = 2;',
@@ -44,8 +46,8 @@ exports['plato'] = {
       });
     });
 
+    console.log('baz');
     positiveTest(promise,test);
-
   },
   'test run' : function(test) {
     test.expect(1);
@@ -106,7 +108,27 @@ exports['plato'] = {
         test.done();
       }
     );
+  },
+  'component lookup' : function(test) {
 
+    var config = {
+      modules : [
+        path.join(__dirname, 'fixtures', 'components')
+      ]
+    };
+
+    plato.getComponents(config).then(
+      function(config){
+        console.log(config);
+        test.ok(config.components.length > 0, 'should have registered components');
+        test.ok(config.components[0] instanceof plato.Component, 'should have a Component');
+        test.done();
+      },function(err){
+        console.log(err.stack);
+        test.ok(false);
+        test.done();
+      }
+    );
   }
 };
 
