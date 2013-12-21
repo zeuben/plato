@@ -16,6 +16,12 @@ if (cli.args.h) {
   process.exit();
 }
 
-cli.exec().then(function(results){
-  console.log('Done!');
-});
+cli.exec().then(
+  function(results){
+    console.log('Done!');
+  },
+  function(err){
+    console.log('Failed!');
+    console.log(err);
+  }
+);
