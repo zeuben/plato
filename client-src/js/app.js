@@ -2,22 +2,18 @@
 define(
   [
     '../config',
-    '../reports/aggregate',
-    'app/directives/ng.plato.barchart',
-    'app/directives/plato.common-directives'
+    '../reports/aggregate'
   ],
   function(config, reportsAggregate){
 
+
     var loginApp = angular.module('platoApp', [
-      'plato-charts',
-      'plato-common-directives'
-    ]);
+
+    ].concat(config.components));
 
     loginApp.controller('appCtrl', [
       '$scope',
-      '$sce',
-      '$compile',
-      function($scope, $sce, $compile) {
+      function($scope) {
         $scope.config = config;
         $scope.reports = reportsAggregate;
 
@@ -44,7 +40,6 @@ define(
         }
       };
     }]);
-
 
 
 });

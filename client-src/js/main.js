@@ -4,9 +4,17 @@ requirejs.config({
 
 requirejs(
   [
-    'app'
+    '../config'
   ],
-  function (app) {
-    angular.bootstrap(document, ['platoApp']);
+  function (config) {
+    // todo: evaluate better, more static ways of requiring child components
+    var componentDependencies = config.components.map(function(component){return '../components/' + component;});
+
+    require(componentDependencies, function(){
+      require(['app'], function(){
+        angular.bootstrap(document, ['platoApp']);
+      });
+    });
+
   }
 );
