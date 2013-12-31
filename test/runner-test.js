@@ -112,6 +112,7 @@ exports['plato'] = {
   'component lookup' : function(test) {
 
     var config = {
+      output : 'tmp',
       modules : [
         path.join(__dirname, 'fixtures', 'components')
       ]

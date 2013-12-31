@@ -32,14 +32,26 @@ exports['plato'] = {
   tearDown: function(done) {
     done();
   },
+  '' : function(test) {
+    var component = new Component()
+      .name('foo');
+
+    test.equal(component.name(), 'foo', 'should set the property appropriately');
+    test.done();
+  },
   'component registration' : function(test) {
 
-    var component = new Component('foo', __dirname, ['fixtures/a.js', 'fixtures/b.js']);
+    var component = new Component()
+      .name('foo')
+      .basedir(__dirname)
+      .source(['fixtures/a.js', 'fixtures/b.js'])
+      .styles(['fixtures/c.css']);
 
-    component.promise.then(
-      function(){
-        test.equal(component.files.length, 2);
-        test.ok(component.src);
+    component.readFiles().then(
+      function(concatenatedFiles){
+        test.equal(concatenatedFiles.length, 2, 'should return two strings');
+        test.equal(concatenatedFiles[0].length, 269, 'should haven concatenated source');
+        test.equal(concatenatedFiles[1].length, 27, 'should haven concatenated styles');
         test.done();
       },
       function(err) {
