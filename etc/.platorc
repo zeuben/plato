@@ -1,0 +1,44 @@
+{
+  "title" : "Plato Report Title",
+  "output" : "reports",
+  "files" : "test/fixtures/**/*.js",
+  "modules" : [
+    "plato-complexity-report",
+    "plato-jshint"
+  ],
+  "plato-jshint" : {
+    "jshintrc" : ".jshintrc"
+  },
+  "plato-complexity-report" : {
+    "newmi" : true
+  },
+  "layout" : {
+    "overview" : [
+      [
+        "<h1>{{config.title}}</h1>"
+      ],
+      [
+        "<h2>Maintainability</h2><average source=reports.files property=plato-complexity-report.maintainability places=2></average>",
+        "<h2>SLOC</h2><average source=reports.files property=plato-complexity-report.sloc.physical places=2></average>"
+      ],
+      [
+        "<h3>Maintainability</h3><plato-barchart source=reports.files property=plato-complexity-report.maintainability></plato-barchart>"
+      ],
+      [
+        "<h3>Lines of Code</h3><plato-barchart source=reports.files property=plato-complexity-report.sloc.physical></plato-barchart>"
+      ],
+      [
+        "<h3>Estimated Errors In Implementation</h3><plato-barchart source=reports.files property=plato-complexity-report.halstead.bugs ></plato-barchart>"
+      ],
+      [
+        "<h3>Lint Errors</h3><plato-barchart source=reports.files property=plato-jshint.messages></plato-barchart>"
+      ],
+      [
+        "<h3>Files</h3>"
+      ],
+      [
+       "<list items=reports.files><hbar label='Maintainability' property=item.plato-complexity-report.maintainability min=0 max=plato-complexity-report.maintainability /><hbar label='Complexity' property=item.plato-complexity-report.cyclomatic min=0 max=plato-complexity-report.cyclomatic /><hbar label='Estimated Defects' property=item.plato-complexity-report.halstead.bugs min=0 max=plato-complexity-report.halstead.bugs /><hbar label='Lines' property=item.plato-complexity-report.sloc.physical min=0 max=plato-complexity-report.sloc.physical /><hbar label='Lint Errors' property=item.plato-jshint.messages min=0 max=plato-jshint.messages /></list>"
+      ]
+    ]
+  }
+}

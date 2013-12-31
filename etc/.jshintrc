@@ -1,0 +1,25 @@
+
+{
+  "curly": false,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": false,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "unused": "variables",
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "debug": true,
+  "globals" : {
+    "window" : false,
+    "d3" : false,
+    "document" : false,
+    "angular" : false,
+    "requirejs" : false,
+    "require" : false,
+    "define" : false
+  }
+}

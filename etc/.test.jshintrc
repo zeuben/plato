@@ -1,0 +1,34 @@
+
+{
+  "curly": false,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": false,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "unused": "variables",
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "debug": true,
+  "globals" : {
+    "plato" : true,
+    "window" : false,
+    "d3" : false,
+    "document" : false,
+    "angular" : false,
+    "requirejs" : false,
+    "require" : false,
+    "define" : false,
+    "describe" : false,
+    "it" : false,
+    "module" : false,
+    "xit" : false,
+    "expect" : false,
+    "inject" : false,
+    "beforeEach" : false,
+    "afterEach" : false
+  }
+}
