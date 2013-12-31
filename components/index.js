@@ -3,14 +3,24 @@ var path = require('path');
 
 exports.registerComponents = function(plato){
 
-  return [
-    new plato.Component('plato-charts', __dirname, [
+  var charts = new plato.Component()
+    .name('plato-charts')
+    .basedir(__dirname)
+    .source([
       'charts/plato.barchart.js'
-    ]),
-    new plato.Component('plato-common', __dirname, [
+    ]);
+
+  var directives = new plato.Component()
+    .name('plato-directives')
+    .basedir(__dirname)
+    .source([
       'directives/util.js',
-      'directives/ng.plato.barchart.js',
-      'directives/plato.common-directives.js'
+      'directives/ng.plato-barchart.js',
+      'directives/ng.plato-common.js'
     ])
-  ];
+    .styles([
+      'styles/hbar.css'
+    ]);
+
+  return [ charts, directives ];
 };
