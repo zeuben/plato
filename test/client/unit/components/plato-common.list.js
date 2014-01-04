@@ -3,10 +3,6 @@ describe('plato-directives.list', function() {
 
   beforeEach(module('plato-directives'));
 
-  beforeEach(inject(function($rootScope, $compile) {
-  }));
-
-
   it('should populate a list of items with scope set to iterated object', inject(function($rootScope, $compile) {
     el = angular.element(
       '<div>' +
