@@ -28,6 +28,6 @@ define(
       ]);
 
       angular.bootstrap(document, ['platoApp']);
-    }
+    };
 
 });
