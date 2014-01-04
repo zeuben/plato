@@ -16,6 +16,9 @@
   <script src="js/vendor/d3/d3.js"></script>
   <script src="js/vendor/jquery/jquery.js"></script>
   <script src="js/vendor/angular/angular.js"></script>
+  <script src="js/vendor/angular-route/angular-route.js"></script>
+
+  <script src="requirejs-config.js"></script>
   <script src="js/vendor/requirejs/require.js" data-main="js/main"></script>
 </head>
 
@@ -46,7 +49,7 @@
 
   <div ng-repeat="row in config.layout.overview">
     <div ng-repeat="item in row track by $index">
-      <div plato-element ng-class="classForLength(row.length)" element="item" config="config" reports="reports"></div>
+      <div plato-element ng-class="classForLength(row.length)" element="item" config="config" report="report"></div>
       </div>
     </div>
   </div>
