@@ -9,13 +9,43 @@ plato.util = (function(global, plato){
 
   var util = {
     dotref : function(object, reference) {
-      function arr_deref(o, ref, i) {
-        return !ref ? o : (o[ref.slice(0, i ? -1 : ref.length)]);
+      function deref(obj, ref) {
+        return !ref ? obj : !obj ? undefined : ref in obj ? obj[ref] : undefined;
       }
-      function dot_deref(o, ref) {
-        return !ref ? o : ref.split('[').reduce(arr_deref, o);
+      return reference.split('.').reduce(deref, object);
+    },
+    isNumber : function(num) {
+      if (num === undefined || num === null) return false;
+      return typeof num === 'number' ? !isNaN(+num) : +(num.toString());
+    },
+    getStringFromBand : function(band, num) {
+      var lower, string, upper, parts = band.split(/[^a-zA-Z0-9#.]/);
+
+      if (!util.isNumber(parts[0])) parts.unshift(-Infinity);
+      if (!util.isNumber(parts[parts.length])) parts.push(Infinity);
+
+      for (var i = 0; i < parts.length; i++) {
+        if (lower === undefined) {
+          lower = parts[i];
+          continue;
+        }
+        if (string === undefined) {
+          string = parts[i];
+          continue;
+        }
+        upper = parts[i];
+        if (num < lower) {
+          lower = upper;
+          string = upper = undefined;
+          continue;
+        };
+        if (num > upper) {
+          lower = upper;
+          string = upper = undefined;
+          continue;
+        };
+        return string;
       }
-      return reference.split('.').reduce(dot_deref, object);
     },
     vals : function(coll) {
       return coll instanceof Array ? coll : Object.keys(coll).map(function(k){return coll[k]});

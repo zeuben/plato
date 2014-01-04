@@ -14,8 +14,8 @@
         property : '@',
         places : '@'
       },
-      link : function(scope, elem, attr) {
-        elem.addClass('plato-average');
+      link : function(scope, el, attr) {
+        el.addClass('plato-average');
 
         var keys = Object.keys(scope.source);
         var sum = keys.reduce(function(prev, next){
@@ -29,16 +29,47 @@
 
   }]);
 
+  platoCommon.directive('platoElement', ['$compile', function($compile){
+    return {
+      restrict : 'A',
+      scope : {
+        element : '=',
+        config : '=',
+        report : '='
+      },
+      link : function(scope, el, attr){
+        el.append($compile(scope.element)(scope));
+      }
+    };
+  }]);
+
+  platoCommon.directive('num', [function(){
+    return {
+      restrict : 'E',
+      template : '<span ng-class="[\'plato-num\', \'plato-num-\' + getClass(numberband, value)]">{{value}}</span>',
+      scope : {
+        source : '=',
+        property : '@',
+        numberband : '@'
+      },
+      link : function(scope, el, attr) {
+        scope.value = plato.util.dotref(scope.source, scope.property);
+        scope.getClass = plato.util.getStringFromBand;
+      }
+    }
+
+  }]);
+
   platoCommon.directive('list', ['$compile', '$rootScope', function($compile, $rootScope){
 
-    function postLink($scope, $elem, $attr, controller, transclude) {
-      $scope.max = plato.util.findMax.bind(null, $scope.items);
+    function postLink(scope, el, attr, controller, transclude) {
+      scope.max = plato.util.findMax.bind(null, scope.items);
 
-      var list = $elem.find('.plato-item-list');
-      Object.keys($scope.items).forEach(function(key){
-        var scope = $scope.$new();
-        scope.item = $scope.items[key];
-        transclude(scope, function(clone) {
+      var list = el.find('.plato-item-list');
+      Object.keys(scope.items).forEach(function(key){
+        var childScope = scope.$new();
+        childScope.item = scope.items[key];
+        transclude(childScope, function(clone) {
           list.append(angular.element('<li></li>').append(clone));
         });
       });
@@ -65,12 +96,12 @@
                       '<div class="plato-hbar-inner"></div>' +
                     '</div>' +
                   '</div>',
-      link : function(scope, elem, attr) {
-        elem.find('.plato-hbar-outer').css({
+      link : function(scope, el, attr) {
+        el.find('.plato-hbar-outer').css({
           width: '100%',
           height: (attr.height || 20) + 'px'
         });
-        elem.find('.plato-hbar-label').html(attr.label);
+        el.find('.plato-hbar-label').html(attr.label);
 
         var value = plato.util.dotref(scope, attr.property);
 
@@ -90,7 +121,7 @@
         if (value > max) value = max;
 
         var plottedValue = (value - min) / (max - min);
-        elem.find('.plato-hbar-inner').css({
+        el.find('.plato-hbar-inner').css({
           height : '100%',
           width : (plottedValue.toFixed(2) * 100) + '%',
           backgroundColor : attr.color || 'red'
