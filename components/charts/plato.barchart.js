@@ -5,7 +5,6 @@ plato.barchart = (function(global){
   'use strict';
 
   return function(data, container){
-    window.a = container;
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
       width = container.offsetWidth - margin.left - margin.right,
       height = container.offsetHeight - margin.top - margin.bottom;
@@ -48,17 +47,19 @@ plato.barchart = (function(global){
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
       .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Value");
+      .style("text-anchor", "end");
 
     chart.selectAll(".bar")
       .data(data)
-      .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.label); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.value); })
-      .attr("height", function(d) { return height - y(d.value); });
+      .enter()
+      .append('a')
+        .attr('xlink:href', function(d){ return d.link })
+        .append("rect")
+          .attr("class", "bar")
+          .attr("x", function(d) { return x(d.label); })
+          .attr("width", x.rangeBand())
+          .attr("y", function(d) { return y(d.value); })
+          .attr("height", function(d) { return height - y(d.value); });
 
     function type(d) {
       d.frequency = +d.frequency;

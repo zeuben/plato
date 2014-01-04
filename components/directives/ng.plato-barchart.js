@@ -21,9 +21,11 @@
 
         var data = Object.keys(scope.source).map(function(key){
           var report = scope.source[key];
+          console.log(report);
           return {
             label : key,
-            value : plato.util.dotref(report, scope.property)
+            value : plato.util.dotref(report, scope.property),
+            link : './detail.html#' + report.meta.link
           };
         });
 
